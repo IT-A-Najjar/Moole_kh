@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categories;
+use App\Models\Types;
 use Illuminate\Http\Request;
 
 class TypeController extends Controller
@@ -11,9 +13,9 @@ class TypeController extends Controller
      */
     public function index()
     {
-        return view(
-            'types.index'
-        );
+        return view('types.index',[
+                'types' => Types::all()
+            ]);
     }
 
     /**
@@ -21,7 +23,12 @@ class TypeController extends Controller
      */
     public function create()
     {
-        return view('types.create');
+        return view(
+            'types.create',
+            [
+                'Categories' => Categories::all(),
+            ]
+        );
     }
 
     /**
@@ -29,7 +36,17 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request -> validate([
+            'name' => 'required',
+            'category_id' => 'required',
+        ]);
+
+       $type = new Types();
+       $type -> name   = strip_tags($request -> input('name')) ;
+       $type -> category_id   = strip_tags($request -> input('category_id')) ;
+       $type -> save();
+
+       return redirect() -> route ('type.index');
     }
 
     /**
@@ -45,22 +62,38 @@ class TypeController extends Controller
      */
     public function edit(string $id)
     {
-        return view('types.edit');
+        return view('types.edit',[
+            'type' => Types::findOrFail($id),
+            'Categories' => Categories::all(),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $type)
     {
-       
+        $request -> validate([
+            'name' => 'required',
+            'category_id' => 'required',
+        ]);
+
+        $to_update = Types::findOrFail($type);
+        $to_update -> name   = strip_tags($request -> input('name')) ;
+        $to_update -> category_id   = strip_tags($request -> input('category_id')) ;
+        $to_update -> save();
+
+       return redirect() -> route ('type.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($type)
     {
-        //
+        $to_delete =  Types::findOrFail($type);
+        $to_delete -> delete();
+        return redirect() -> route ('type.index');
+    
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Offers;
 use Illuminate\Http\Request;
 
 class OfferController extends Controller
@@ -11,7 +12,9 @@ class OfferController extends Controller
      */
     public function index()
     {
-        return view('offers');
+        return view('offers',[
+            'offers' => Offers::all()
+        ]);
     }
 
     /**
@@ -27,7 +30,22 @@ class OfferController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request -> validate([
+            'type' => 'required',
+            'des' => 'required',
+            'discount' => 'required',
+            'expiry' => 'required',
+        ]);
+
+        $offer = new Offers();
+        $offer -> offer_type   = strip_tags($request -> input('type')) ;
+        $offer -> offer_des   = strip_tags($request -> input('des')) ;
+        $offer -> discount_value   = strip_tags($request -> input('discount')) ;
+        $offer -> expiry_date   = strip_tags($request -> input('expiry')) ;
+
+        $offer -> save();
+
+        return redirect() -> route ('offer.index');
     }
 
     /**
@@ -41,17 +59,33 @@ class OfferController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        return view('offers.edit');
+        return view('offers.edit',[
+            'offer' => Offers::findOrFail($id)
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $request -> validate([
+            'type' => 'required',
+            'des' => 'required',
+            'discount' => 'required',
+            'expiry' => 'required',
+        ]);
+
+        $to_update = Offers::findOrFail($id);
+        $to_update -> offer_type   = strip_tags($request -> input('type')) ;
+        $to_update -> offer_des   = strip_tags($request -> input('des')) ;
+        $to_update -> discount_value   = strip_tags($request -> input('discount')) ;
+        $to_update -> expiry_date   = strip_tags($request -> input('expiry')) ;
+        $to_update -> save();
+
+        return redirect() -> route ('offer.index');
     }
 
     /**
@@ -59,6 +93,9 @@ class OfferController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $to_delete =  Offers::findOrFail($id);
+        $to_delete -> delete();
+        return redirect() -> route ('offer.index');
+
     }
 }

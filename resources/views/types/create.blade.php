@@ -13,9 +13,9 @@
             <x-input-label for="category_id" :value="__('Category Name')" />
                 <select name="category_id" class="block mt-1 w-full" id="floatingSelect" aria-label="Floating label select example" style="border-radius: 5px;">
                     <option selected>Open this select menu</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    @foreach($Categories as $category)
+                    <option value="{{$category->id}}">{{$category->name}}</option>
+                    @endforeach
                 </select>
             </div>
         </div>

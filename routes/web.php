@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\OfferController;
@@ -24,15 +25,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/shop', function () {
-    return view('shop',
-                  ['products'=>Product::all(),
-                ]);
-});
+// Route::get('/shop', function () {
+//     return view('shop',
+//                   ['products'=>Product::all(),
+//                 ]);
+// });
 Route::get('/about', function () {
     return view('about');
 });
-Route::get('/offers', function () {
+Route::get('/offer', function () {
     return view('offers');
 });
 Route::get('/shop-details', function () {
@@ -44,6 +45,11 @@ Route::get('/shopping-cart', function () {
 Route::get('/checkout', function () {
     return view('checkout');
 });
+//Route::get( '/customer',function (){
+//    return view('checkout',[
+//        'message' => "تم التسجيل"
+//    ]);
+//});
 Route::get('/blog', function () {
     return view('blog');
 });
@@ -67,9 +73,11 @@ Route::middleware(['auth','is_admin'])->group(function () {
     Route::resource('category',CategoryController::class);
     Route::resource('product',ProductController::class);
     Route::resource('type',TypeController::class);
-    Route::resource('offers',OfferController::class);
+    Route::resource('offer',OfferController::class);
     Route::resource('note',NoteController::class);
     Route::resource('news',NewsController::class);
+    Route::resource('customer',CustomerController::class);
+
 });
 
 require __DIR__ . '/auth.php';

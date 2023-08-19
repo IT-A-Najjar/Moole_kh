@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use App\Models\Product;
+use App\Models\Products;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -16,7 +17,7 @@ class ProductController extends Controller
         return view(
             'product.index',
             [
-                'products' => Product::all(),
+                'products' => Products::all(),
             ]
         );
     }

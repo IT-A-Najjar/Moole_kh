@@ -15,7 +15,7 @@
         </div>
         <div class="flex items-center justify-end mt-4">
             <x-primary-button class="ml-4">
-                {{ __('Create') }}
+                {{ __('Edit') }}
             </x-primary-button>
         </div>
     </form>
