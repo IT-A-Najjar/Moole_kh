@@ -14,6 +14,7 @@ class OfferController extends Controller
     {
         return view('offers',[
             'offers' => Offers::all()
+
         ]);
     }
 

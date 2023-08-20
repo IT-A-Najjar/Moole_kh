@@ -45,11 +45,6 @@ Route::get('/shopping-cart', function () {
 Route::get('/checkout', function () {
     return view('checkout');
 });
-//Route::get( '/customer',function (){
-//    return view('checkout',[
-//        'message' => "تم التسجيل"
-//    ]);
-//});
 Route::get('/blog', function () {
     return view('blog');
 });

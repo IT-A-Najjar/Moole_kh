@@ -68,7 +68,7 @@
                           <div class="blog__details__text">
                              <p>{{$offer->offer_des}}</p>
                               <div class="text-center placeholder-wave position-relative py-2 px-4 text-bg-secondary border border-secondary rounded-pill">
-                                      <a href="" class="text-white" aria-disabled="true">.. شراء الان</a>
+                                      <a href="{{route('customer.index',$offer->id)}}" class="text-white" aria-disabled="true">.. شراء الان</a>
                               </div>
                           </div>
                        @endif

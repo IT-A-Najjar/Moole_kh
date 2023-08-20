@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string("desctiption")->nullable();
             $table->string("price")->nullable();
             $table->string("image")->nullable();
+            $table->foreignId("type_id")->nullable()->constrained('types')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

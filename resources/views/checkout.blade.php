@@ -22,6 +22,9 @@
     <section class="checkout spad">
         <div class="container">
             <div class="checkout__form">
+{{--                @if(isset($offer))--}}
+{{--                    <form method="POST" action="{{route('customer.store',$offer)}}">--}}
+{{--                @endif--}}
                 <form method="POST" action="{{route('customer.store')}}">
                     @csrf
                     <div class="row">

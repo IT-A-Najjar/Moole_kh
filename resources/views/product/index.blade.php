@@ -28,32 +28,36 @@
                         <div class="shop__product__option__left">
                            <p>Filter</p>
                            <div class="form-floating">
-                              <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                                 <option selected>Open this select menu</option>
-                                 <option value="1">One</option>
-                                 <option value="2">Two</option>
-                                 <option value="3">Three</option>
-                              </select>
+                               <form action="{{ route('product.index') }}" method="GET">
+                                   <select name="sort_by" onchange="this.form.submit()">
+                                       <option value="4">ِAll</option>
+                                       @foreach($types as $type)
+                                           <option value="{{$type->id}}">{{$type->name}}</option>
+                                       @endforeach
+                                   </select>
+                               </form>
                            </div>
                         </div>
                      </div>
-                     <div class="col-lg-6 col-md-6 col-sm-6">
-                        <div class="shop__product__option__right">
-                           <p>Sort by Price:</p>
-                           <select>
-                              <option value="">Low To High</option>
-                              <option value="">$0 - $55</option>
-                              <option value="">$55 - $100</option>
-                           </select>
-                        </div>
-                     </div>
+                      <div class="col-lg-6 col-md-6 col-sm-6">
+                          <div class="shop__product__option__right">
+                              <p>Sort by Price:</p>
+                              <form action="{{ route('product.index') }}" method="GET">
+                                  <select name="sort_by" onchange="this.form.submit()">
+                                      <option value="1s">Low To High</option>
+                                      <option value="2s">$0 - $55</option>
+                                      <option value="3s">$55 - $100</option>
+                                  </select>
+                              </form>
+                          </div>
+                      </div>
                   </div>
                </div>
                <div class="row">
                   @foreach($products as $product)
                   <div class="col-lg-4 col-md-6 col-sm-6">
                      <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/product/product-2.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="images/{{$product->image}}">
                            <ul class="product__hover">
                               <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
                               <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a>
@@ -63,6 +67,9 @@
                         </div>
                         <div class="product__item__text">
                            <h6>{{$product->name}}</h6>
+                            <p>
+                                {{$product->desctiption}}
+                            </p>
                            <a href="#" class="add-cart">+ Add Specification</a>
                            <h5>${{$product->price}}</h5>
 

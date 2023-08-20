@@ -43,9 +43,9 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
-        'img' => [
+        'aa' => [
             'driver' => 'local',
-            'root' => public_path('public'),
+            'root' => public_path('app/public'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
             'throw' => false,
