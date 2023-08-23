@@ -12,7 +12,7 @@
                      <li>8 Comments</li>
                   </ul>
                   <br>
-                   @if(auth()->user()->is_admin)
+                   @if(auth()->user())
                        <h4><a href="./offer/create"  style="color: #dc3545;">اضافة خصومات</a></h4>
                    @endif
                </div>
@@ -58,9 +58,15 @@
                                    </div>
                                    <div class="col-lg-6 col-md-6 col-sm-6">
                                        <div class="blog__details__tags">
+                                           @if(auth()->user())
                                            <a href="{{route('offer.edit',$offer->id)}}">{{$offer->offer_type}}</a>
                                            <a href="{{route('offer.edit',$offer->id)}}">{{$offer->discount_value}}</a>
                                            <a href="{{route('offer.edit',$offer->id)}}">{{$offer->expiry_date}}</a>
+                                           @else
+                                           <a>{{$offer->offer_type}}</a>
+                                           <a>{{$offer->discount_value}}</a>
+                                           <a>{{$offer->expiry_date}}</a>
+                                           @endif
                                        </div>
                                    </div>
                                </div>

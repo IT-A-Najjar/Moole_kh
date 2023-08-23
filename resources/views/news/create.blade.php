@@ -4,7 +4,7 @@
          {{ __('Create News') }}
       </h2>
    </x-slot>
-   <form method="POST" action="#">
+   <form method="POST" action="{{ route('news.store') }}">
       @csrf
 
       <!-- title -->

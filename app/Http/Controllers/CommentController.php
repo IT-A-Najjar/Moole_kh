@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comments;
+use App\Models\Customers;
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
-class NewsController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +21,6 @@ class NewsController extends Controller
             'newss' => $news,
             'comments'=>$comment
         ]);
-
     }
 
     /**
@@ -27,25 +28,37 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('news.create');
+        //
     }
 
     /**
      * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
+     */public function store(Request $request)
+{
+
         $request -> validate([
-            'title' => 'required',
+            'name' => 'required',
+            'news_id' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
             'content' => 'required',
         ]);
+        if(auth()->user()){
+            $id_user= auth()->user()->id;
+        }
 
-        $offer = new News();
-        $offer -> title   = strip_tags($request -> input('title')) ;
-        $offer -> content   = strip_tags($request -> input('content')) ;
-        $offer -> save();
+        $comment = new Comments();
+        $comment -> content   = strip_tags($request -> input('content')) ;
+        $comment -> name   = strip_tags($request -> input('name')) ;
+        if(auth()->user()){
+            $comment -> user_id   =  auth()->user()->id;
+        }else{
+            $comment -> user_id   = 1;
+        }
+        $comment -> news_id = strip_tags($request -> input('news_id')) ;
+        $comment -> save();
 
-        return redirect() -> route ('news.index');
+        return redirect() -> route ('comment.index');
     }
 
     /**

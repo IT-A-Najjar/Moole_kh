@@ -2,6 +2,9 @@
     <!-- Contact Section Begin -->
     <section class="contact spad">
         <div class="container">
+            @if(isset($message))
+                <h6 class="coupon__code"><span class="icon_tag_alt"></span> {{$message}}</h6>
+            @endif
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="contact__text">
@@ -21,20 +24,22 @@
                                 <p>109 Avenue Léon, 63 Clermont-Ferrand <br />+12 345-423-9893</p>
                             </li>
                         </ul>
+
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="contact__form">
-                        <form action="#">
+                        <form method="POST" action="{{route('note.store')}}">
+                            @csrf
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <input type="text" placeholder="Name">
+                                    <input name="name" type="text" placeholder="Name">
                                 </div>
                                 <div class="col-lg-6">
-                                    <input type="text" placeholder="Email">
+                                    <input name="email" type="text" placeholder="Email">
                                 </div>
                                 <div class="col-lg-12">
-                                    <textarea placeholder="Message"></textarea>
+                                    <textarea name="content" placeholder="Message"></textarea>
                                     <button type="submit" class="site-btn">Send Message</button>
                                 </div>
                             </div>

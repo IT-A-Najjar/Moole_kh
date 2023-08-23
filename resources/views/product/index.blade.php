@@ -30,7 +30,7 @@
                            <div class="form-floating">
                                <form action="{{ route('product.index') }}" method="GET">
                                    <select name="sort_by" onchange="this.form.submit()">
-                                       <option value="4">ِAll</option>
+                                       <option value="all">ِAll</option>
                                        @foreach($types as $type)
                                            <option value="{{$type->id}}">{{$type->name}}</option>
                                        @endforeach

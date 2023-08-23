@@ -23,30 +23,21 @@
                   <table class="table table-striped table-light">
                      <thead>
                         <tr>
-                           <th scope="col">#</th>
+                           <th scope="col">id</th>
                            <th scope="col">Name</th>
                            <th scope="col">Email</th>
                            <th scope="col">Message</th>
                         </tr>
                      </thead>
                      <tbody>
+                     @foreach($messages as $message)
                         <tr>
-                           <th scope="row">1</th>
-                           <td>Mark</td>
-                           <td>Otto</td>
-                           <td>@mdo</td>
+                           <th scope="row">{{$message->id}}</th>
+                           <td>{{$message->name}}</td>
+                           <td>{{$message->email}}</td>
+                           <td>{{$message->content}}</td>
                         </tr>
-                        <tr>
-                           <th scope="row">2</th>
-                           <td>Jacob</td>
-                           <td>Thornton</td>
-                           <td>@fat</td>
-                        </tr>
-                        <tr>
-                           <th scope="row">3</th>
-                           <td colspan="2">Larry the Bird</td>
-                           <td>@twitter</td>
-                        </tr>
+                     @endforeach
                      </tbody>
                   </table>
                </div>

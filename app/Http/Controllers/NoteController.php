@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notes;
 use Illuminate\Http\Request;
 
 class NoteController extends Controller
@@ -11,7 +12,15 @@ class NoteController extends Controller
      */
     public function index()
     {
-        return view('notes.index');
+        if(auth()->user()){
+            return view('notes.index',[
+                'messages'=>Notes::orderBy('created_at', 'desc')->get()
+            ]);
+        }else{
+            return view('contact',[
+                'message' => "تم تسجيل رسالتك سيتم التواصل معك باقرب وقت"
+            ]);
+        }
     }
 
     /**
@@ -27,7 +36,20 @@ class NoteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request -> validate([
+            'name' => 'required',
+            'email' => 'required',
+            'content' => 'required',
+            ]);
+
+        $note = new Notes();
+        $note -> name   = strip_tags($request -> input('name')) ;
+        $note -> email   = strip_tags($request -> input('email')) ;
+        $note -> content   = strip_tags($request -> input('content')) ;
+
+        $note -> save();
+
+        return redirect() -> route ('note.index');
     }
 
     /**

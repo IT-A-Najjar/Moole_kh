@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\NoteController;
@@ -8,6 +9,9 @@ use App\Http\Controllers\OfferController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TypeController;
+use App\Models\Comments;
+use App\Models\News;
+use App\Models\Offers;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -33,8 +37,12 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return view('about');
 });
-Route::get('/offer', function () {
-    return view('offers');
+Route::get('/offers', function () {
+    return view('offers',[
+        'offers' => Offers::all()
+    ]);
+});Route::get('/shop', function () {
+    return view('shop');
 });
 Route::get('/shop-details', function () {
     return view('shop-details');
@@ -50,6 +58,16 @@ Route::get('/blog', function () {
 });
 Route::get('/contact', function () {
     return view('contact');
+});
+Route::resource('comment',CommentController::class);
+Route::resource('note',NoteController::class);
+Route::get('/newss', function () {
+    $news = News::orderBy('created_at', 'desc')->get();
+    $comment = Comments::orderBy('created_at', 'desc')->get();
+    return view('news.index', [
+        'newss' => $news,
+        'comments'=>$comment
+    ]);
 });
 
 Route::get('/a', function () {
@@ -69,10 +87,9 @@ Route::middleware(['auth','is_admin'])->group(function () {
     Route::resource('product',ProductController::class);
     Route::resource('type',TypeController::class);
     Route::resource('offer',OfferController::class);
-    Route::resource('note',NoteController::class);
     Route::resource('news',NewsController::class);
     Route::resource('customer',CustomerController::class);
-
+//    Route::resource('comment',CommentController::class);
 });
 
 require __DIR__ . '/auth.php';

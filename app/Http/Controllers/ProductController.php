@@ -41,6 +41,8 @@ class ProductController extends Controller
             $productsQuery->whereBetween('price', [0, 55]);
         } elseif ($sortBy == '3s') {
             $productsQuery->whereBetween('price', [55, 100]);
+        } elseif ($sortBy == 'all') {
+            $productsQuery->orderBy('created_at', 'desc');
         } else {
             $productsQuery->where('type_id', $sortBy);
         }
