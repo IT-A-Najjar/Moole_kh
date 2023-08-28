@@ -55,9 +55,9 @@
          </div>
       </div>
       <div class="offcanvas__nav__option">
-         <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-         <a href="#"><img src="img/icon/heart.png" alt=""></a>
-         <a href="#"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
+{{--         <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>--}}
+{{--         <a href="#"><img src="img/icon/heart.png" alt=""></a>--}}
+{{--         <a href="#"><img src="img/icon/cart.png" alt=""> <span id="cart-contents">00</span></a>--}}
          <div class="price">$0.00</div>
       </div>
       <div id="mobile-menu-wrap"></div>
@@ -128,8 +128,8 @@
                         <ul class="dropdown">
                            <li><a href="{{ url('/profile') }}">Profile</a></li>
                            <li><a href="./category">All Categories</a></li>
-                           <!-- <li><a href="./category/create">Create Category</a></li> -->
-                           <li><a href="./product/create">Create Product</a></li>
+                            <li><a href="./type">All Type</a></li>
+                            <li><a href="./product/create">Create Product</a></li>
                            <li><a href="./product">Blog</a></li>
                         </ul>
                      </li>
@@ -146,7 +146,7 @@
             </div>
             <div class="col-lg-2 col-md-2">
                <div class="header__nav__option">
-                  <a href="#"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
+                  <a href="#"><img src="img/icon/cart.png" alt=""><span id="cart-contents" class="text-danger">0</span></a>
                   <div class="price">$0.00</div>
                </div>
             </div>

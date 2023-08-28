@@ -5,6 +5,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h2>Our Blog</h2>
+                    <h2>مدونتنا</h2>
                 </div>
             </div>
         </div>

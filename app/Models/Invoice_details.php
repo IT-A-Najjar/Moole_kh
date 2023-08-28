@@ -19,7 +19,7 @@ class Invoice_details extends Model
     public function Product() {
         return $this->belongsTo(Products::class);
     }
-    public function Invoice() {
-        return $this->belongsTo(Invoices::class);
+    public function Invoices() {
+        return $this->hasMany(Invoices::class);
     }
 }

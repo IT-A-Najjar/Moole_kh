@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CustomerController;
@@ -47,9 +48,9 @@ Route::get('/offers', function () {
 Route::get('/shop-details', function () {
     return view('shop-details');
 });
-Route::get('/shopping-cart', function () {
-    return view('shopping-cart');
-});
+//Route::get('/shopping-cart', function () {
+//    return view('shopping-cart');
+//});
 Route::get('/checkout', function () {
     return view('checkout');
 });
@@ -59,8 +60,11 @@ Route::get('/blog', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
+Route::resource('cart',CartController::class);
 Route::resource('comment',CommentController::class);
 Route::resource('note',NoteController::class);
+//Route::post('/cart', [ProductController::class, 'addToCart'])->name('cart');
+//Route::get('/cart', [ProductController::class, 'showCart'])->name('cart.show');
 Route::get('/newss', function () {
     $news = News::orderBy('created_at', 'desc')->get();
     $comment = Comments::orderBy('created_at', 'desc')->get();

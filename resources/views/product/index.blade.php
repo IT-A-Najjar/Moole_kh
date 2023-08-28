@@ -20,6 +20,16 @@
    <!-- Shop Section Begin -->
    <section class="shop spad">
       <div class="container">
+          <div class="continue__btn update__btn text-center">
+              <form action="{{route('cart') }}">
+                  @csrf
+                  <button type="submit">
+                      <a href="javascript:void(0);" onclick="goToCart()">
+                          <i class="fa fa-chevron-right"></i> Go to cart
+                      </a>
+                  </button>
+              </form>
+          </div>
          <div class="row">
             <div class="col-lg-12">
                <div class="shop__product__option">
@@ -70,7 +80,8 @@
                             <p>
                                 {{$product->desctiption}}
                             </p>
-                           <a href="#" class="add-cart">+ Add Specification</a>
+                            <!-- داخل عنصر product__item__text -->
+                            <a class="add-cart" onclick="addToCart({{$product->id}})">+ Add Specification</a>
                            <h5>${{$product->price}}</h5>
 
                         </div>
@@ -82,5 +93,45 @@
          </div>
       </div>
    </section>
-   <!-- Shop Section End -->
+    <script>
+        // مصفوفة لتخزين معرّفات المنتجات المضافة إلى السلة المؤقتة
+        let cartItems = [];
+
+        // وظيفة لإضافة معرّف المنتج إلى السلة المؤقتة وعرض محتوياتها
+        function addToCart(productId) {
+            if (!cartItems.includes(productId)) {
+                cartItems.push(productId);
+                console.log("تمت إضافة المنتج إلى السلة:", cartItems);
+            } else {
+                console.log("المنتج موجود بالفعل في السلة.");
+            }
+
+            // عرض محتويات السلة
+            showCartContents();
+        }
+
+        // وظيفة لعرض محتويات السلة
+        function showCartContents() {
+            const cartContentsElement = document.getElementById("cart-contents");
+            cartContentsElement.innerHTML = cartItems.length;
+        }
+        function goToCart() {
+            // قم بإرسال المصفوفة إلى الـ Controller باستخدام طلب POST
+            fetch('/cart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}' // تحتاج إلى توفير قيمة token CSRF هنا
+                },
+                body: JSON.stringify({ cartItems: cartItems })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // عمليات بعد الرد من الـ Controller
+                    window.location.href = data.redirectTo; // انتقل إلى صفحة السلة مثلاً
+                });
+        }
+    </script>
+
+    <!-- Shop Section End -->
 </x-app-layout>

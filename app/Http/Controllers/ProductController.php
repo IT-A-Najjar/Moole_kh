@@ -10,23 +10,6 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-//    public function index(Request $request)
-//    {
-//        if(!empty($request)){
-//            return view(
-//                'product.index',
-//                [
-//                    'products' => Products::orderBy('created_at', 'desc')->get(),
-//                ]
-//            );
-//        }else{
-//            return $request;
-//        }
-//    }
-//// في وحدة التحكم (Controller)
     public function index(Request $request)
     {
         $sortBy = $request->input('sort_by'); // افترض أن قيمة 'sort_by' تأتي من القائمة
@@ -51,6 +34,19 @@ class ProductController extends Controller
         $types = Types::all();
 
         return view('product.index', compact('products','types'));
+    }
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function addToCart(Request $request) {
+        if ($request->session()->has('cartItems')) {
+            $cartItems = $request->session()->get('cartItems');
+
+//            return redirect()->route('cart'); // انتقل إلى صفحة السلة مثلاً
+            return $cartItems;
+        }
+
+
     }
 
     /**

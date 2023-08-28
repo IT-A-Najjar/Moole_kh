@@ -65,28 +65,37 @@
                        @endif
                    @endforeach
                   <div class="blog__details__comment">
-                     <h4>Add a comment</h4>
-                      <form method="POST" action="{{route('comment.store')}}">
-                          @csrf
-                        <div class="row">
-                            <div class="col-lg-4 col-md-4 d-none">
-                                <input type="text" placeholder="Name" name="news_id" value="{{$news->id}}">
-                            </div>
-                           <div class="col-lg-4 col-md-4">
-                              <input type="text" placeholder="Name" name="name">
-                           </div>
-                           <div class="col-lg-4 col-md-4">
-                              <input type="text" placeholder="Email" name="email">
-                           </div>
-                           <div class="col-lg-4 col-md-4">
-                              <input type="text" placeholder="Phone" name="phone">
-                           </div>
-                           <div class="col-lg-12 text-center">
-                              <textarea placeholder="Comment" name="content"></textarea>
-                              <button type="submit" class="site-btn">Post Comment</button>
-                           </div>
-                        </div>
-                     </form>
+
+                      <p class="d-inline-flex gap-1 ">
+                          <button class="btn btn-danger" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                              Add a comment
+                          </button>
+                      </p>
+                      <div class="collapse" id="collapseExample">
+                          <h4>Add a comment</h4>
+                          <form method="POST" action="{{route('comment.store')}}">
+                              @csrf
+                              <div class="row">
+                                  <div class="col-lg-4 col-md-4 d-none">
+                                      <input type="text" placeholder="Name" name="news_id" value="{{$news->id}}">
+                                  </div>
+                                  <div class="col-lg-4 col-md-4">
+                                      <input type="text" placeholder="Name" name="name">
+                                  </div>
+                                  <div class="col-lg-4 col-md-4">
+                                      <input type="text" placeholder="Email" name="email">
+                                  </div>
+                                  <div class="col-lg-4 col-md-4">
+                                      <input type="text" placeholder="Phone" name="phone">
+                                  </div>
+                                  <div class="col-lg-12 text-center">
+                                      <textarea placeholder="Comment" name="content"></textarea>
+                                      <button type="submit" class="site-btn">Post Comment</button>
+                                  </div>
+                              </div>
+                          </form>
+                      </div>
+
                   </div>
                </div>
             </div>
