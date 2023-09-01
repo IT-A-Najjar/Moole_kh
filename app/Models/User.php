@@ -20,6 +20,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'address',
+        'phone_number',
         'password',
         'is_admin',
     ];
@@ -40,7 +42,18 @@ class User extends Authenticatable
     // {
     //     return $this->hasMany(Notifications::class);
     // }
-
+    public function Invoices()
+    {
+        return $this->hasMany(Invoices::class);
+    }
+    public function Orders()
+    {
+        return $this->hasMany(Orders::class);
+    }
+    public function Reviews()
+    {
+        return $this->hasMany(Reviews::class);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

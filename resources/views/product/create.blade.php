@@ -20,7 +20,7 @@
         </div>
         <div>
             <x-input-label for="description" :value="__('Product description')" />
-            <x-text-input id="description" class="block mt-1 w-full" type="text" name="description" :value="old('description')" required autofocus autocomplete="description product" />
+            <x-text-input id="desctiption" class="block mt-1 w-full" type="text" name="desctiption" :value="old('desctiption')" required autofocus autocomplete="description product" />
             <x-input-error :messages="$errors->get('description')" class="mt-2" />
         </div>
 

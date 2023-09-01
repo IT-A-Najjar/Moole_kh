@@ -7,6 +7,7 @@
    <meta name="keywords" content="Male_Fashion, unica, creative, html">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
    <title>{{ config('app.name', 'Laravel') }}</title>
 
    <!-- Google Font -->
@@ -22,7 +23,9 @@
    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
    <link rel="stylesheet" href="css/style.css" type="text/css">
-   <!-- @vite(['resources/css/app.css', 'resources/js/app.js']) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- @vite(['resources/css/app.css', 'resources/js/app.js']) -->
     <style>
         /* Apply Nucleo font using font-family */
         body {
@@ -237,7 +240,8 @@
 
    <!-- Js Plugins -->
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-   <script src="js/jquery-3.3.1.min.js"></script>
+{{--   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>--}}
+{{--   <script src="js/jquery-3.3.1.min.js"></script>--}}
    <script src="js/bootstrap.min.js"></script>
    <script src="js/jquery.nice-select.min.js"></script>
    <script src="js/jquery.nicescroll.min.js"></script>

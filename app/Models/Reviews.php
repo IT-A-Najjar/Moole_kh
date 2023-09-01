@@ -17,7 +17,7 @@ class Reviews extends Model
     public function Product() {
         return $this->belongsTo(Products::class);
     }
-    public function Customer() {
-        return $this->belongsTo(Customers::class);
+    public function User() {
+        return $this->belongsTo(User::class);
     }
 }

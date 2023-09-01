@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("time")->nullable();
             $table->string("total_amount")->nullable();
-            $table->foreignId("customer_id")->nullable()->constrained("customers")->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId("user_id")->nullable()->constrained("users")->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

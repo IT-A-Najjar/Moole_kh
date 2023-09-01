@@ -21,7 +21,7 @@
    <section class="shop spad">
       <div class="container">
           <div class="continue__btn update__btn text-center">
-              <form action="{{route('cart') }}">
+              <form >
                   @csrf
                   <button type="submit">
                       <a href="javascript:void(0);" onclick="goToCart()">
@@ -96,7 +96,6 @@
     <script>
         // مصفوفة لتخزين معرّفات المنتجات المضافة إلى السلة المؤقتة
         let cartItems = [];
-
         // وظيفة لإضافة معرّف المنتج إلى السلة المؤقتة وعرض محتوياتها
         function addToCart(productId) {
             if (!cartItems.includes(productId)) {

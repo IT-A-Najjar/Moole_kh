@@ -9,7 +9,7 @@ class CartController extends Controller
 {
     public function someid()
     {
-        return [6, 10, 11, 12, 13, 14];
+        return [1,2];
     }
 
     /**

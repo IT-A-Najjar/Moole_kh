@@ -9,7 +9,20 @@
                         <p>Full Name<span>*</span></p>
                         <input id="name" class="block mt-1 w-full" type="text" name="name" required autofocus autocomplete="name">
                     </div>
-
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="checkout__input">
+                                <p>Address<span>*</span></p>
+                                <input id="address" class="block mt-1 w-full" type="text" name="address" required autocomplete="address">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="checkout__input">
+                                <p>Phone Number<span>*</span></p>
+                                <input id="phone_number" class="block mt-1 w-full" type="text" name="phone_number" required autocomplete="phone_number">
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="checkout__input">
@@ -33,7 +46,7 @@
                         <p>Order notes<span>*</span></p>
                         <input type="text" placeholder="Notes about your order, e.g. special notes for delivery.">
                     </div>
-                    
+
                     <button type="submit" class="btn btn-outline-success" style="color:forestgreen">Register</button>
                 </form>
             </div>

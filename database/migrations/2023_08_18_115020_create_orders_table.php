@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string("order_state")->nullable();
             $table->date("order_date")->nullable();
             $table->double("total_amount")->nullable();
-            $table->foreignId("customer_id")->nullable()->constrained("customers")->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId("user_id")->nullable()->constrained("users")->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId("offer_id")->nullable()->constrained("offers")->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });

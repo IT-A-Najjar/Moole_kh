@@ -4,6 +4,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\InvoiceDetailsController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\OfferController;
@@ -61,6 +62,7 @@ Route::get('/contact', function () {
     return view('contact');
 });
 Route::resource('cart',CartController::class);
+Route::resource('invoice',InvoiceDetailsController::class);
 Route::resource('comment',CommentController::class);
 Route::resource('note',NoteController::class);
 //Route::post('/cart', [ProductController::class, 'addToCart'])->name('cart');

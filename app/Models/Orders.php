@@ -15,8 +15,8 @@ class Orders extends Model
         'customer_id',
         'offer_id',
     ];
-    public function Custonmer() {
-        return $this->belongsTo(Customers::class);
+    public function User() {
+        return $this->belongsTo(User::class);
     }
     public function Offer() {
         return $this->belongsTo(Offers::class);

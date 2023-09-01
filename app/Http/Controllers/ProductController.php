@@ -63,7 +63,7 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'description' => 'required',
+            'desctiption' => 'required',
             'price' => 'required',
             'type_id'=>'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // تحقق من نوع وحجم الصورة
@@ -74,7 +74,7 @@ class ProductController extends Controller
 
         $product = new Products([
             'name' => $request->input('name'),
-            'desctiption' => $request->input('description'),
+            'desctiption' => $request->input('desctiption'),
             'price' => $request->input('price'),
             'image' => $imageName,
             'type_id'=>$request->input('type_id'),
