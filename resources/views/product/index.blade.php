@@ -24,7 +24,7 @@
               <form >
                   @csrf
                   <button type="submit">
-                      <a href="javascript:void(0);" onclick="goToCart()">
+                      <a href="/cart">
                           <i class="fa fa-chevron-right"></i> Go to cart
                       </a>
                   </button>

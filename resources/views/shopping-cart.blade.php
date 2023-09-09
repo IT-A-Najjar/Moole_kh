@@ -152,7 +152,7 @@
 
                                 $.ajax({
                                     type: 'POST',
-                                    url: 'invoice', // تحديد المسار الصحيح
+                                    url: '/invoice/creat', // تحديد المسار الصحيح
                                     data: {
                                         _token: csrfToken, // استخدام متغير _token لتمرير الCSRF token
                                         cartData: cartData

@@ -54,7 +54,8 @@ Route::get('/shop-details', function () {
 //});
 Route::get('/checkout', function () {
     return view('checkout');
-});
+})->name('checkout');
+
 Route::get('/blog', function () {
     return view('blog');
 });
@@ -62,7 +63,8 @@ Route::get('/contact', function () {
     return view('contact');
 });
 Route::resource('cart',CartController::class);
-Route::resource('invoice',InvoiceDetailsController::class);
+//Route::resource('invoice',InvoiceDetailsController::class);
+Route::get('invoice/creat',[InvoiceDetailsController::class,'updateCart']);
 Route::resource('comment',CommentController::class);
 Route::resource('note',NoteController::class);
 //Route::post('/cart', [ProductController::class, 'addToCart'])->name('cart');

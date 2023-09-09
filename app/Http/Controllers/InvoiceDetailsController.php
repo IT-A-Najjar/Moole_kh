@@ -12,8 +12,8 @@ class InvoiceDetailsController extends Controller
     public function someid()
     {
         return [
-            "6" => 1,
-            "10" => 2,
+            "1" => 1,
+            "2" => 2,
             "11" => 1,
             "12" => 1,
             "13" => 1,
@@ -28,6 +28,8 @@ class InvoiceDetailsController extends Controller
         $idData = $this->someid();
         $request = new Request(['idData' => $idData]);
         $this->updateCart($request);
+        return redirect()->route('checkout')->with('message', 'تم إيداع الفاتورة');
+
     }
 
     /**
@@ -40,18 +42,14 @@ class InvoiceDetailsController extends Controller
 
     public function updateCart(Request $request)
     {
-        $cartData = $request->input('idData');
-//        $total = 0;
-//        foreach ($cartData as $productId => $quantity) {
-//            $total += $quantity;
-//        }
+        $cartData = $this->someid();
         $total = array_sum($cartData);
 
         $invoice = new Invoices();
         $invoice->time = now();
         $invoice->total_amount = $total;
-        $invoice->customer_id = auth()->user()->id;
-        $invoice->save();
+        $invoice->user_id = auth()->user()->id;
+//        $invoice->save();
         foreach ($cartData as  $productId => $quantity) {
             $product = Products::findOrFail($productId);
             $invoice_n = Invoices::orderBy('created_at', 'desc')
@@ -64,11 +62,11 @@ class InvoiceDetailsController extends Controller
             $invoices_d -> total_price   = $product->price * $cartData[$productId] ;
             $invoices_d->product_id = $productId;
             $invoices_d->invoice_id=$invoice_n->id;
-
-            $invoices_d -> save();
+//            $invoices_d -> save();
         }
 
-        return response()->json(['message' => 'Cart updated successfully']);
+        return redirect('/checkout');
+
     }
     /**
      * Store a newly created resource in storage.

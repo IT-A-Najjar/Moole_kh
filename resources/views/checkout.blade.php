@@ -29,8 +29,8 @@
                     @csrf
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
-                            @if(isset($message))
-                                <h6 class="coupon__code"><span class="icon_tag_alt"></span> {{$message}}</h6>
+                            @if(session('message'))
+                                <h6 class="coupon__code"><span class="icon_tag_alt"></span> {{ session('message') }}</h6>
                             @endif
                             <h6 class="checkout__title">Billing Details</h6>
                             <div class="checkout__input">
